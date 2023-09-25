@@ -10,9 +10,12 @@ import (
 )
 
 func NewRouter() *mux.Router {
+	//This is a constructor function It creates a router object using gorilla
+
 	r := mux.NewRouter()
 	r.HandleFunc("/hello", handler).Methods("GET")
 
+	//This is the file directory in html
 	staticFileDirectory := http.Dir("./assets/")
 
 	staticfileHandler := http.StripPrefix("/assets/", http.FileServer(staticFileDirectory))
@@ -23,6 +26,8 @@ func NewRouter() *mux.Router {
 
 func main() {
 
+	//This just creates a router function and
+	//listens and serve in the 8080 port.
 	r := NewRouter()
 	http.ListenAndServe(":8080", r)
 }
